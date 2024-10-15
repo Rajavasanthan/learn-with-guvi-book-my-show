@@ -10,7 +10,9 @@ window.onload = async () => {
 
 async function fetchMovieDetails(movieId) {
   try {
-    const response = await fetch(`https://movie-details-data.onrender.com/movie/${movieId}`);
+    const response = await fetch(
+      `https://movie-details-data.onrender.com/movie/${movieId}`
+    );
     const movie = await response.json();
 
     // Object.entries(movie.shows).flatMap(([date,showtime]) => {
@@ -104,4 +106,57 @@ async function fetchMovieDetails(movieId) {
       document.body.appendChild(showContainer);
     }
   } catch (error) {}
+}
+
+document.getElementById("submitBooking").addEventListener("click", async () => {
+  const movieId = document.getElementById("modalMovieId").value;
+  const showId = document.getElementById("modalShowId").value;
+  const seats = document.getElementById("modalShowDate").value;
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const phoneNumber = document.getElementById("phoneNumber").value;
+
+  try {
+    const response = await fetch(
+      "https://movie-details-data.onrender.com/movie/book-movie",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          movieId,
+          showId,
+          seats,
+          name,
+          email,
+          phoneNumber,
+        }),
+      }
+    );
+    const result = await response.json();
+
+    if (response.ok) {
+      const bookingModal = bootstrap.Modal.getInstance(
+        document.getElementById("bookingModal")
+      );
+      bookingModal.hide();
+      alert("Tickets booked successfully!");
+      window.location.reload();
+    }
+  } catch (error) {}
+});
+
+function bookTickets(movieId, showId, date) {
+  // Set the values of modal input fields
+  document.getElementById("modalMovieId").value = movieId;
+  document.getElementById("modalShowId").value = showId;
+  document.getElementById("modalShowDate").value = date;
+
+  // Show the booking modal (using Bootstrap modal)
+  const bookingModal = new bootstrap.Modal(
+    document.getElementById("bookingModal")
+  );
+  bookingModal.show();
 }
