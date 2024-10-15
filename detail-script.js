@@ -10,7 +10,7 @@ window.onload = async () => {
 
 async function fetchMovieDetails(movieId) {
   try {
-    const response = await fetch(`http://localhost:4000/movie/${movieId}`);
+    const response = await fetch(`https://movie-details-data.onrender.com/movie/${movieId}`);
     const movie = await response.json();
 
     // Object.entries(movie.shows).flatMap(([date,showtime]) => {
