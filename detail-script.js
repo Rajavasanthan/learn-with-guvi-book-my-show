@@ -119,7 +119,7 @@ document.getElementById("submitBooking").addEventListener("click", async () => {
 
   try {
     const response = await fetch(
-      "http://localhost:4000/movie/book-movie",
+      "https://learn-with-guvi-book-my-show-backend.onrender.com/movie/book-movie",
       {
         method: "POST",
         headers: {
@@ -145,7 +145,9 @@ document.getElementById("submitBooking").addEventListener("click", async () => {
       alert("Tickets booked successfully!");
       window.location.reload();
     }
-  } catch (error) {}
+  } catch (error) {
+    alert("Something Went Wrong!");
+  }
 });
 
 function bookTickets(movieId, showId, date) {
