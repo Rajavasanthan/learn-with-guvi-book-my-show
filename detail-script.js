@@ -78,7 +78,7 @@ async function fetchMovieDetails(movieId) {
                                         <td>
                                             <div class="border p-1" style="display: flex; flex-direction: column; align-items: center;">
                                                 <div>${show.time}</div>
-                                                <div class="text-muted" style="font-size: 15px;">4K Dolby Atmos 7.1</div>
+                                                <div class="text-muted" style="font-size: 18px;">4K Dolby Atmos 7.1</div>
                                             </div>
                                         </td>
                                         <td>
